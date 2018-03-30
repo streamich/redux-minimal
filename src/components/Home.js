@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {rule, jsx} from '../nano';
 import Sidebar from "./Sidebar";
 import Button from "./Button";
-import { createIcon } from "../actions/icons";
+import {createIcon} from "../actions/icons";
+import IconList from './IconList/connected';
 
 const className = rule({
   pad: '20px'
@@ -35,6 +36,7 @@ class Home extends React.Component {
           <SidebarPadding>
             <Button primary block onClick={this.onNewIconClick}>Create icon</Button>
           </SidebarPadding>
+          <IconList />
         </Sidebar>
         <Layout>
           <h4>Hello world!</h4>

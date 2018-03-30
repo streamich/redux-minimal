@@ -1,7 +1,10 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {rule, jsx} from '../nano';
 import Sidebar from "./Sidebar";
 import Button from "./Button";
+import { createIcon } from "../actions/icons";
 
 const className = rule({
   pad: '20px'
@@ -12,19 +15,33 @@ const SidebarPadding = jsx('div', {
   padb: 0,
 });
 
-// Home page component
-export default class Home extends React.Component {
-  // render
+const Layout = jsx('div', {
+  padl: '300px',
+});
+
+class Home extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  };
+
+  onNewIconClick = () => {
+    this.props.dispatch(createIcon());
+  };
+
   render() {
     return (
       <div className={className}>
         <Sidebar>
           <SidebarPadding>
-            <Button primary block>Create icon</Button>
+            <Button primary block onClick={this.onNewIconClick}>Create icon</Button>
           </SidebarPadding>
         </Sidebar>
-        <h4>Hello world!</h4>
+        <Layout>
+          <h4>Hello world!</h4>
+        </Layout>
       </div>
     );
   }
 }
+
+export default connect()(Home);

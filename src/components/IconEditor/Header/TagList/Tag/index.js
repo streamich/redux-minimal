@@ -3,7 +3,7 @@ import {jsx} from '../../../../../nano';
 
 const Tag = jsx('span', {
   d: 'inline-block',
-  bg: '#ddd',
+  bg: '#e6e6e6',
   col: '#555',
   pad: '0 16px',
   h: '36px',
@@ -12,6 +12,7 @@ const Tag = jsx('span', {
   bdrad: '3px',
   fz: '12px',
   cur: 'pointer',
+  trs: 'background .2s',
   '&:hover': {
     bg: '#ccc',
   }

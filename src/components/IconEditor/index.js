@@ -8,6 +8,14 @@ import {sheet} from '../../nano';
 const styles = sheet({
   editor: {
     w: '100%',
+    maxW: '600px',
+    mar: 'auto',
+  },
+  card: {
+    bdrad: '1px',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, .1), 0 0 2px rgba(0, 0, 0, .1)',
+    pad: '24px',
+    mar: '8px 0 0',
   }
 }, 'IconEditor');
 
@@ -24,7 +32,7 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag}) => {
         onAddTag={onAddTag}
         onRemoveTag={onRemoveTag}
       />
-      <div>
+      <div className={styles.card}>
         <Colors />
         <Grid />
       </div>

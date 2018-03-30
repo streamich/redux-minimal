@@ -2,3 +2,5 @@
 node_modules/
 public/js/
 public/css/
+yarn.lock
+package-lock.json

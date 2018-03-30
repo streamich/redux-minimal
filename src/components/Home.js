@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import Button from "./Button";
 import {createIcon} from "../actions/icons";
 import IconList from './IconList/connected';
-import IconEditor from './IconEditor';
+import IconEditor from './IconEditor/connected';
 import {selectIcon} from "../actions/app";
 
 const className = rule({

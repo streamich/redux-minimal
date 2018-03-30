@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {jsx} from '../../nano';
 
 const width = 300;
@@ -19,6 +20,10 @@ const SidebarPanel = jsx('aside', {
 
 const Sidebar = ({children}) => {
     return <SidebarPanel>{children}</SidebarPanel>;
+};
+
+Sidebar.propTypes = {
+    children: PropTypes.any.isRequired,
 };
 
 export default Sidebar;

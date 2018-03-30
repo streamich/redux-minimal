@@ -1,5 +1,7 @@
+import React from 'react';
 
-
-const IconEditor = () => {
-  
+const IconEditor = ({uuid}) => {
+  return <div>Icon editor [{uuid}]...</div>;
 };
+
+export default IconEditor;

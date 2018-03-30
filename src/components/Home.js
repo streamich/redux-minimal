@@ -6,6 +6,8 @@ import Sidebar from "./Sidebar";
 import Button from "./Button";
 import {createIcon} from "../actions/icons";
 import IconList from './IconList/connected';
+import IconEditor from './IconEditor';
+import {selectIcon} from "../actions/app";
 
 const className = rule({
   pad: '20px'
@@ -23,10 +25,15 @@ const Layout = jsx('div', {
 class Home extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    currentIconUuid: PropTypes.string.isRequired,
   };
 
   onNewIconClick = () => {
     this.props.dispatch(createIcon());
+  };
+
+  onIconSelect = (uuid) => {
+    this.props.dispatch(selectIcon(uuid));
   };
 
   render() {
@@ -36,14 +43,16 @@ class Home extends React.Component {
           <SidebarPadding>
             <Button primary block onClick={this.onNewIconClick}>Create icon</Button>
           </SidebarPadding>
-          <IconList />
+          <IconList onSelect={this.onIconSelect} />
         </Sidebar>
         <Layout>
-          <h4>Hello world!</h4>
+          <IconEditor uuid={this.props.currentIconUuid} />
         </Layout>
       </div>
     );
   }
 }
 
-export default connect()(Home);
+const mapStateToProps = (state) => state.app;
+
+export default connect(mapStateToProps)(Home);

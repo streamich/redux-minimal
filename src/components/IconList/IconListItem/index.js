@@ -14,14 +14,24 @@ const IconPanel = jsx('div', {
   }
 });
 
-const IconListItem = ({uuid, name, tags}) => {
-  return <IconPanel className="fadeIn">{name}</IconPanel>;
-};
+const IconListItem = ({active, uuid, name, tags, onClick}) =>
+  <IconPanel
+    className="fadeIn"
+    css={{
+      bdr: active ? '3px solid #07f' : 0,
+
+    }}
+    onClick={onClick}
+  >
+      {name}
+  </IconPanel>;
 
 IconListItem.propTypes = {
+  active: PropTypes.bool.isRequired,
   uuid: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   tags: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default IconListItem;

@@ -3,6 +3,7 @@ import IconList from '.';
 
 const mapStateToProps = (state) => {
   return {
+    activeUuid: state.app.currentIconUuid,
     icons: state.icons,
   };
 };

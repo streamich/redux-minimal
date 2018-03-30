@@ -11,14 +11,14 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon}) => {
+const IconEditor = ({uuid, icon, onNameChange}) => {
   if (!icon) {
     return null;
   }
 
   return (
     <div className={styles.editor}>
-      <Header icon={icon} />
+      <Header icon={icon} onNameChange={onNameChange} />
       <div>
         <Colors />
         <Grid />

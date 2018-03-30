@@ -1,5 +1,5 @@
 import uuidv1 from 'uuid/v1';
-import {ICONS_CREATE} from "../actions/icons";
+import {ICONS_CREATE, ICONS_RENAME} from "../actions/icons";
 
 let cnt = 1;
 
@@ -15,6 +15,14 @@ export default (state, action) => {
         pixels: {},
         colors: [],
       }};
+    case ICONS_RENAME:
+      const icon = state[action.uuid];
+
+      if (!icon) {
+        return state;
+      }
+
+      return {...state, [action.uuid]: {...icon, name: action.name}};
     default:
       return state || {};
   }

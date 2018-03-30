@@ -9,6 +9,7 @@ const className = rule({
   out: 0,
   h: '40px',
   minW: '200px',
+  trs: 'border .2s',
   '&:focus': {
     bdb: '1px solid #07f',
   }

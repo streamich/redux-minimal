@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import IconEditor from '.';
-import {renameIcon} from '../../actions/icons';
+import {renameIcon, addTag, removeTag} from '../../actions/icons';
 
 const mapStateToProps = (state, props) => {
   let icon = null;
@@ -16,6 +16,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, {uuid}) => ({
   onNameChange: (name) => dispatch(renameIcon(uuid, name)),
+  onAddTag: (tag) => dispatch(addTag(uuid, tag)),
+  onRemoveTag: (tag) => dispatch(removeTag(uuid, tag)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IconEditor);

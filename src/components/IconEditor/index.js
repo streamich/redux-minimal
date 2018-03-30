@@ -8,18 +8,22 @@ import {sheet} from '../../nano';
 const styles = sheet({
   editor: {
     w: '100%',
-    bd: '1px solid red',
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon, onNameChange}) => {
+const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag}) => {
   if (!icon) {
     return null;
   }
 
   return (
     <div className={'fadeInScale' + styles.editor} key={uuid}>
-      <Header icon={icon} onNameChange={onNameChange} />
+      <Header
+        icon={icon}
+        onNameChange={onNameChange} 
+        onAddTag={onAddTag}
+        onRemoveTag={onRemoveTag}
+      />
       <div>
         <Colors />
         <Grid />

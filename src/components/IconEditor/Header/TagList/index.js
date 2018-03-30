@@ -10,14 +10,16 @@ const className = rule({
 const TagList = ({tags, onAdd, onRemove}) => {
   return (
     <div className={className}>
-      tags...
+      {Object.keys(tags).map((tag, index) =>
+        <span key={index}>{tag}</span>
+      )}
       <TagInput onSubmit={onAdd} />
     </div>
   );
 };
 
 TagList.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tags: PropTypes.object.isRequired,
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 };

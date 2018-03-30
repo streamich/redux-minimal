@@ -39,6 +39,22 @@ export default (state, action) => {
           }
         }
       };
+    case ICONS_TAG_REMOVE:
+      icon = state[action.uuid];
+
+      if (!icon) {
+        return state;
+      }
+
+      const {[action.tag]: omit, ...tags} = icon.tags;
+
+      return {
+        ...state,
+        [action.uuid]: {
+          ...icon,
+          tags
+        }
+      };
     default:
       return state || {};
   }

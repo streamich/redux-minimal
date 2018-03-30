@@ -4,7 +4,7 @@ import {jsx} from '../../nano';
 
 const ButtonBase = jsx('button', {
     d: 'inline-flex',
-    h: '40px',
+    h: '50px',
     td: 'none',
     boxSizing: 'border-box',
     justifyContent: 'center',

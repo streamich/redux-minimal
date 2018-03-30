@@ -7,16 +7,19 @@ const styles = sheet({
   form: {
     d: 'inline-block',
     maxW: '200px',
-    pad: '0 0 0 10px',
+    mart: '8px',
+    h: '36px',
   },
   input: {
+    h: '36px',
     bd: 0,
     out: 0,
-    fz: '12px',
+    fz: '13px',
     fw: 300,
     pad: '2px',
+    col: '#555',
     '&:focus': {
-      fw: 'bold',
+      col: '#000',
     }
   },
 });

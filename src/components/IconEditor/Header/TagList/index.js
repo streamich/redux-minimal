@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TagInput from './TagInput';
+import Tag from './Tag';
 import {rule} from '../../../../nano';
 
 const className = rule({
-  pad: '16px 0',
+  pad: '8px 0',
 });
 
 const TagList = ({tags, onAdd, onRemove}) => {
   return (
     <div className={className}>
       {Object.keys(tags).map((tag, index) =>
-        <span key={index}>{tag}</span>
+        <Tag key={index} onClick={() => onRemove(tag)}>{tag}</Tag>
       )}
       <TagInput onSubmit={onAdd} />
     </div>

@@ -8,9 +8,8 @@ const initialState = {
 export default (state, action) => {
   switch (action.type) {
     case APP_SELECT_ICON:
-      return {...state, currentIconUuid: action.uuid};
     case ICONS_CREATE:
-      return {currentIconUuid: action.uuid};
+      return {...state, currentIconUuid: action.uuid};
     default:
       return state || initialState;
   }

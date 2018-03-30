@@ -37,6 +37,10 @@ const TagInput = ({onSubmit}) => {
           placeholder={'Add tag\u2026'} 
           value={value} 
           onChange={(event) => set(event.target.value)}
+          onBlur={() => {
+            onSubmit(value);
+            set('');
+          }}
         />
       </form>
     }</Value>

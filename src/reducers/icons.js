@@ -23,6 +23,10 @@ export default (state, action) => {
 
       return {...state, [action.uuid]: {...icon, name: action.name}};
     case ICONS_TAG_ADD:
+      if (!action.tag) {
+        return state;
+      }
+
       icon = state[action.uuid];
 
       if (!icon) {

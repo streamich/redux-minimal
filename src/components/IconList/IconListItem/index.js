@@ -23,7 +23,7 @@ const IconListItem = ({active, uuid, name, tags, onClick}) =>
     }}
     onClick={onClick}
   >
-      {name}
+      {name || '...'}
   </IconPanel>;
 
 IconListItem.propTypes = {

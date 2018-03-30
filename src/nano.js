@@ -8,6 +8,7 @@ import {addon as addonAtoms} from 'nano-css/addon/atoms';
 import {addon as addonNesting} from 'nano-css/addon/nesting';
 import {addon as addonKeyframes} from 'nano-css/addon/keyframes';
 import {addon as addonAnimateFadeIn} from 'nano-css/addon/animate/fadeIn';
+import {addon as addonAnimateFadeInScale} from 'nano-css/addon/animate/fadeInScale';
 
 const nano = create({
     h: createElement
@@ -20,6 +21,7 @@ addonAtoms(nano);
 addonNesting(nano);
 addonKeyframes(nano);
 addonAnimateFadeIn(nano);
+addonAnimateFadeInScale(nano);
 
 const {rule, sheet, jsx} = nano;
 

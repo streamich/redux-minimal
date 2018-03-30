@@ -13,7 +13,7 @@ const className = rule({
 
 const SidebarPadding = jsx('div', {
   pad: '24px',
-  padb: 0,
+  bdb: '1px solid #ddd',
 });
 
 const Layout = jsx('div', {

@@ -8,7 +8,7 @@ export default (state, action) => {
 
       return {...state, [uuid]: {
         uuid,
-        name: action.name || '',
+        name: action.name || 'Unnamed',
         tags: {},
         pixels: {}
       }};

@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const Icon = ({name, tags, pixels}) => {
-  return <div>icon...</div>;
-};
+import IconListItem from './IconListItem';
 
 const IconList = ({icons}) => {
   return (
     <div>
-      {Object.values(icons).map((icon, index) => <Icon {...icon} key={index} />)}
+      {Object.values(icons).map((icon, index) => <IconListItem {...icon} key={index} />)}
     </div>
   );
 };

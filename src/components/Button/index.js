@@ -4,7 +4,6 @@ import {jsx} from '../../nano';
 
 const ButtonBase = jsx('button', {
     d: 'inline-flex',
-    w: 'auto',
     h: '40px',
     td: 'none',
     boxSizing: 'border-box',
@@ -39,7 +38,7 @@ const ButtonBase = jsx('button', {
     },
 }, 'ButtonBase');
 
-const Button = ({primary, ...rest}) => {
+const Button = ({block, primary, ...rest}) => {
     let css = {};
 
     if (primary) {
@@ -47,15 +46,21 @@ const Button = ({primary, ...rest}) => {
         css.col = '#fff';
     }
 
+    if (block) {
+        css.w = '100%';
+    }
+
     return <ButtonBase css={css} {...rest} />
 };
 
 Button.propTypes = {
-    primary: PropTypes.bool,
+    block: PropTypes.bool,
     disabled: PropTypes.bool,
+    primary: PropTypes.bool,
 };
 
 Button.defaultProps = {
+    block: false,
     primary: false,
     disabled: false,
 };

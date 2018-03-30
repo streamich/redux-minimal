@@ -15,7 +15,7 @@ export default class Home extends React.Component {
       <div className={className}>
         <Sidebar>
           sidebar...
-          <Button primary>Create icon</Button>
+          <Button primary block>Create icon</Button>
         </Sidebar>
         <h4>Hello world!</h4>
       </div>

@@ -10,7 +10,8 @@ export default (state, action) => {
         uuid,
         name: action.name || 'Unnamed',
         tags: {},
-        pixels: {}
+        pixels: {},
+        colors: [],
       }};
     default:
       return state || {};

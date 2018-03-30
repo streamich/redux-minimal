@@ -15,7 +15,7 @@ const IconPanel = jsx('div', {
 });
 
 const IconListItem = ({uuid, name, tags}) => {
-  return <IconPanel>{name}</IconPanel>;
+  return <IconPanel className="fadeIn">{name}</IconPanel>;
 };
 
 IconListItem.propTypes = {

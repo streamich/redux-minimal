@@ -1,10 +1,15 @@
 import React from "react";
-import {rule} from '../nano';
+import {rule, jsx} from '../nano';
 import Sidebar from "./Sidebar";
 import Button from "./Button";
 
 const className = rule({
   pad: '20px'
+});
+
+const SidebarPadding = jsx('div', {
+  pad: '24px',
+  padb: 0,
 });
 
 // Home page component
@@ -14,8 +19,9 @@ export default class Home extends React.Component {
     return (
       <div className={className}>
         <Sidebar>
-          sidebar...
-          <Button primary block>Create icon</Button>
+          <SidebarPadding>
+            <Button primary block>Create icon</Button>
+          </SidebarPadding>
         </Sidebar>
         <h4>Hello world!</h4>
       </div>

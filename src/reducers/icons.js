@@ -1,10 +1,11 @@
 import {
-  ICONS_CREATE, 
-  ICONS_RENAME, 
-  ICONS_TAG_ADD, 
-  ICONS_TAG_REMOVE, 
+  ICONS_CREATE,
+  ICONS_RENAME,
+  ICONS_TAG_ADD,
+  ICONS_TAG_REMOVE,
   ICONS_SET_COLOR,
   ICONS_SELECT_COLOR,
+  ICONS_PUT_COLOR,
 } from "../actions/icons";
 
 let cnt = 1;
@@ -62,7 +63,7 @@ export default (state, action) => {
         [action.uuid]: {
           ...icon,
           tags: {
-            ...icon.tags, 
+            ...icon.tags,
             [action.tag]: true
           }
         }
@@ -105,7 +106,16 @@ export default (state, action) => {
       return patchIcon(state, action.uuid, icon => ({
         colorIndex: action.index
       }));
-
+    case ICONS_PUT_COLOR:
+      return patchIcon(state, action.uuid, icon => ({
+        pixels: {
+          ...icon.pixels,
+          [action.y]: {
+            ...(icon.pixels[action.y] || {}),
+            [action.x]: action.color
+          }
+        }
+      }));
     default:
       return state || {};
   }

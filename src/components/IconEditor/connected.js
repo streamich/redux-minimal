@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch, {uuid}) => ({
   onRemoveTag: (tag) => dispatch(removeTag(uuid, tag)),
   onColorChange: (index, color) => dispatch(setColor(uuid, index, color)),
   onColorSelect: (index) => dispatch(selectColor(uuid, index)),
-  onPutColor: (x, y) => dispatch(putColor(uuid, x, y)),
+  onPutColor: (x, y, color) => dispatch(putColor(uuid, x, y, color)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IconEditor);

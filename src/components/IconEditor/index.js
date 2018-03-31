@@ -40,7 +40,7 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
           onSelect={onColorSelect}
         />
         <Grid
-          onClick={onPutColor}
+          onClick={(x, y) => onPutColor(x, y, 'red')}
         />
       </div>
     </div>

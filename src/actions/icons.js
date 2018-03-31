@@ -44,9 +44,10 @@ export const selectColor = (uuid, index) => ({
   type: ICONS_SELECT_COLOR,
 });
 
-export const putColor = (uuid, x, y) => ({
+export const putColor = (uuid, x, y, color) => ({
   uuid,
   x,
   y,
+  color,
   type: ICONS_PUT_COLOR,
 });

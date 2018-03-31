@@ -55,10 +55,7 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
           onClick={(x, y) => onPutColor(x, y, color)}
         />
         <Separator />
-        <div onClick={() => {
-          exportImage(icon);
-          changeFavicon(pixelsToUrl(icon.pixels));
-        }}>
+        <div onClick={() => exportImage(icon)}>
           <SvgDownload />
         </div>
       </div>

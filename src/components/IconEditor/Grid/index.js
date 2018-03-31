@@ -16,7 +16,7 @@ const styles = sheet({
     justifyContent: 'space-between',
   },
   cell: {
-    out: '1px solid #888',
+    out: '1px solid #eee',
     marr: '1px',
   }
 });
@@ -75,7 +75,7 @@ class Grid extends Component {
                 style={{
                   width: cellWidth,
                   height: cellWidth,
-                  background: (pixels[y] || {})[x] || '#eee',
+                  background: (pixels[y] || {})[x] || '#fafafa',
                 }}
                 onMouseDown={() => onClick(x, y)}
               />

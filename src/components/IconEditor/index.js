@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import Palette from './Palette';
 import Grid from './Grid';
-import {sheet} from '../../nano';
+import {sheet, jsx} from '../../nano';
+
+const Separator = jsx('div', {
+  bg: '#e6e6e6',
+  h: '1px',
+  mar: '24px -24px',
+});
 
 const styles = sheet({
   editor: {
@@ -26,13 +32,14 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
 
   return (
     <div className={'fadeInScale' + styles.editor} key={uuid}>
-      <Header
-        icon={icon}
-        onNameChange={onNameChange}
-        onAddTag={onAddTag}
-        onRemoveTag={onRemoveTag}
-      />
       <div className={styles.card}>
+        <Header
+          icon={icon}
+          onNameChange={onNameChange}
+          onAddTag={onAddTag}
+          onRemoveTag={onRemoveTag}
+        />
+        <Separator />
         <Palette
           activeIndex={icon.colorIndex}
           colors={icon.colors}

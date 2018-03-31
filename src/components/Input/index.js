@@ -4,12 +4,15 @@ import {rule} from '../../nano';
 
 const className = rule({
   bd: 0,
-  bdb: '1px solid #ddd',
+  bdb: '1px solid #eee',
   bg: '#fff',
   out: 0,
   h: '40px',
   minW: '200px',
   trs: 'border .2s',
+  fz: '20px',
+  fw: 800,
+  w: '100%',
   '&:focus': {
     bdb: '1px solid #07f',
   }

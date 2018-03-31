@@ -59,9 +59,7 @@ const Picker = ({active, color, onChange, onSelect}) => {
               onSelect();
               toggle();
             }}
-          >
-            {!color && 'Pick'}
-          </div>
+          />
           {on &&
             <div className={styles.select}>
               <ChromePicker

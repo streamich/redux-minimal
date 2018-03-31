@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Toggle} from 'libreact/lib/Toggle';
 import {OutsideClick} from 'libreact/lib/OutsideClick';
-import {ChromePicker} from 'react-color'
+import {SketchPicker} from 'react-color'
 import {sheet} from '../../../../nano';
 
 const styles = sheet({
@@ -62,7 +62,7 @@ const Picker = ({active, color, onChange, onSelect}) => {
           />
           {on &&
             <div className={styles.select}>
-              <ChromePicker
+              <SketchPicker
                 color={color}
                 onChange={(color) => onChange(color.hex)}
                 onChangeComplete={(color) => onChange(color.hex)}

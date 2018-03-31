@@ -10,6 +10,7 @@ const styles = sheet({
   grid: {
     pos: 'relative',
     z: 1,
+    cur: 'cell',
   },
   row: {
     d: 'flex',

@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import Palette from './Palette';
 import Grid from './Grid';
+import Footer from './Footer';
 import {sheet, jsx} from '../../nano';
-import exportImage from '../../api/exportImage';
-import SvgDownload from './SvgDownload';
-import changeFavicon from '../../api/changeFavicon';
-import pixelsToUrl from '../../api/pixelsToUrl';
 
 const Separator = jsx('div', {
   bg: '#e6e6e6',
@@ -55,9 +52,7 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
           onClick={(x, y) => onPutColor(x, y, color)}
         />
         <Separator />
-        <div onClick={() => exportImage(icon)}>
-          <SvgDownload />
-        </div>
+        <Footer icon={icon} />
       </div>
     </div>
   );
@@ -69,6 +64,7 @@ IconEditor.propTypes = {
   icon: PropTypes.shape({
     colorIndex: PropTypes.number.isRequired,
     colors: PropTypes.array.isRequired,
+    pixels: PropTypes.object.isRequired,
   }),
   onNameChange: PropTypes.func.isRequired,
   onAddTag: PropTypes.func.isRequired,

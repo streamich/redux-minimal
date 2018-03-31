@@ -1,5 +1,10 @@
 # Icons
 
+- Refreshes favicon in browser tab
+- Export to `.png`
+- 10 color preset with color picker
+
+
 ## Redux Schema
 
 ```js
@@ -18,21 +23,12 @@
                 }
             },
             colors: [],
+            history: []
         }
     ],
     search: {
-        games: ['23lkrjfw9-23orjfsdf3234'], 
-        retro: ['23lkrjfw9-23orjfsdf3234'], 
-    },
-    history: {
-        '23lkrjfw9-23orjfsdf3234': {
-            index: 0,
-            list: [{
-                '1': {
-                    '1': 'red'
-                }
-            }]
-        }
+        games: ['23lkrjfw9-23orjfsdf3234'],
+        retro: ['23lkrjfw9-23orjfsdf3234'],
     }
 }
 ```

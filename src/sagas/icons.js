@@ -1,8 +1,8 @@
 import {delay} from 'redux-saga';
-import {fork, take, select, call, cancel} from 'redux-saga/effects';
-import {ICONS_PUT_COLOR} from '../actions/icons';
-import {APP_SELECT_ICON} from '../actions/app';
-import {getIcon} from '../selectors';
+import {fork, take, select, call, cancel, takeEvery, put} from 'redux-saga/effects';
+import {ICONS_PUT_COLOR, ICONS_DELETE} from '../actions/icons';
+import {APP_SELECT_ICON, selectIcon} from '../actions/app';
+import {getIcon, getIcons} from '../selectors';
 import changeFavicon from '../api/changeFavicon';
 import pixelsToUrl from '../api/pixelsToUrl';
 
@@ -29,6 +29,20 @@ const watchPutColorForFaviconRefresh = function* () {
   }
 };
 
+const selectSomeIcon = function* () {
+  const icons = yield select(getIcons);
+
+  for (const uuid in icons) {
+    yield put(selectIcon(uuid));
+    break;
+  }
+};
+
+const watchIconDelete = function* () {
+  yield takeEvery(ICONS_DELETE, selectSomeIcon);
+};
+
 export default function * () {
   yield fork(watchPutColorForFaviconRefresh);
+  yield fork(watchIconDelete);
 };

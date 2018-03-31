@@ -13,9 +13,9 @@ const SidebarPanel = jsx('aside', {
     h: '100%',
     top: 0,
     left: 0,
-    ov: 'hidden',
     trs: 'left 0.2s',
     willChange: 'left',
+    ov: 'scroll',
 }, 'SidebarPanel');
 
 const Sidebar = ({children}) => {
@@ -23,7 +23,7 @@ const Sidebar = ({children}) => {
 };
 
 Sidebar.propTypes = {
-    children: PropTypes.any.isRequired,
+    children: PropTypes.any.isRequired
 };
 
 export default Sidebar;

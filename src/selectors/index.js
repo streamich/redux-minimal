@@ -1,1 +1,2 @@
-export const getIcon = (state, uuid) => state.icons[uuid];
+export const getIcons = (state) => state.icons;
+export const getIcon = (state, uuid) => getIcons(state)[uuid];

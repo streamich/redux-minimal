@@ -27,6 +27,7 @@ const styles = sheet({
     w: '50%',
     ta: 'center',
     ff: 'Ubuntu,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
+    fz: '14px',
     col: '#999',
     textTransform: 'uppercase',
     cur: 'pointer',

@@ -6,6 +6,8 @@ import Grid from './Grid';
 import {sheet, jsx} from '../../nano';
 import exportImage from '../../api/exportImage';
 import SvgDownload from './SvgDownload';
+import changeFavicon from '../../api/changeFavicon';
+import pixelsToUrl from '../../api/pixelsToUrl';
 
 const Separator = jsx('div', {
   bg: '#e6e6e6',
@@ -55,6 +57,7 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
         <Separator />
         <div onClick={() => {
           exportImage(icon);
+          changeFavicon(pixelsToUrl(icon.pixels));
         }}>
           <SvgDownload />
         </div>

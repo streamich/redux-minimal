@@ -1,24 +1,4 @@
-const pixelsToPng = (pixels) => {
-  const canvas = document.createElement("canvas");
-
-  canvas.width = 16;
-  canvas.height = 16;
-
-  const ctx = canvas.getContext("2d");
-
-  for (let y = 0; y < 16; y++) {
-    for (let x = 0; x < 16; x++) {
-      const color = (pixels[y] || {})[x];
-
-      if (color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, 1, 1);
-      }
-    }
-  }
-
-  return canvas.toDataURL();
-};
+import pixelsToUrl from "./pixelsToUrl";
 
 const downloadUrl = (name, url) => {
   const a = document.createElement('a');
@@ -29,12 +9,12 @@ const downloadUrl = (name, url) => {
 	document.body.appendChild(a);
   a.click();
 
-  document.removeChilde(a);
+  document.body.removeChild(a);
 };
 
 const exportImage = (icon) => {
   const {name, pixels} = icon;
-  const url = pixelsToPng(pixels);
+  const url = pixelsToUrl(pixels);
 
   downloadUrl(name + '.png', url);
 };

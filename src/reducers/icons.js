@@ -44,13 +44,9 @@ export default (state, action) => {
       const {[action.uuid]: omitIcon, ...rest} = state;
       return rest;
     case ICONS_RENAME:
-      icon = state[action.uuid];
-
-      if (!icon) {
-        return state;
-      }
-
-      return {...state, [action.uuid]: {...icon, name: action.name}};
+      return patchIcon(state, action.uuid, (icon) => ({
+        name: action.name,
+      }));
     case ICONS_TAG_ADD:
       if (!action.tag) {
         return state;
@@ -73,45 +69,25 @@ export default (state, action) => {
         }
       };
     case ICONS_TAG_REMOVE:
-      icon = state[action.uuid];
+      return patchIcon(state, action.uuid, (icon) => {
+        const {[action.tag]: omit, ...tags} = icon.tags;
 
-      if (!icon) {
-        return state;
-      }
-
-      const {[action.tag]: omit, ...tags} = icon.tags;
-
-      return {
-        ...state,
-        [action.uuid]: {
-          ...icon,
-          tags
-        }
-      };
+        return {tags};
+      });
     case ICONS_SET_COLOR:
-      icon = state[action.uuid];
+      return patchIcon(state, action.uuid, (icon) => {
+        const colors = [...icon.colors];
 
-      if (!icon) {
-        return state;
-      }
+        colors[action.index] = action.color;
 
-      const colors = [...icon.colors];
-
-      colors[action.index] = action.color;
-
-      return {
-        ...state,
-        [action.uuid]: {
-          ...icon,
-          colors
-        }
-      };
+        return {colors};
+      });
     case ICONS_SELECT_COLOR:
       return patchIcon(state, action.uuid, icon => ({
         colorIndex: action.index
       }));
     case ICONS_PUT_COLOR:
-      return patchIcon(state, action.uuid, icon => ({
+      return patchIcon(state, action.uuid, (icon) => ({
         pixels: {
           ...icon.pixels,
           [action.y]: {

@@ -20,7 +20,7 @@ const styles = sheet({
   }
 });
 
-const Grid = () => {
+const Grid = ({onClick}) => {
   return (
     <SizeSensor>{({width}) => {
       const cellWidth = width / SIZE - 1;
@@ -28,16 +28,21 @@ const Grid = () => {
 
       for (let y = 0; y < SIZE; y++) {
         const cells = [];
-    
+
         for (let x = 0; x < SIZE; x++) {
           cells.push(
-            <div key={x} className={styles.cell} style={{
-              width: cellWidth,
-              height: cellWidth,
-            }} />
+            <div
+              key={x}
+              className={styles.cell}
+              style={{
+                width: cellWidth,
+                height: cellWidth,
+              }}
+              onClick={() => onClick(x, y)}
+            />
           );
         }
-    
+
         rows.push(
           <div key={y} className={styles.row}>{cells}</div>
         );

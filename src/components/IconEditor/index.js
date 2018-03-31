@@ -19,7 +19,7 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect}) => {
+const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor}) => {
   if (!icon) {
     return null;
   }
@@ -39,7 +39,9 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
           onChange={onColorChange}
           onSelect={onColorSelect}
         />
-        <Grid />
+        <Grid
+          onClick={onPutColor}
+        />
       </div>
     </div>
   );
@@ -56,6 +58,7 @@ IconEditor.propTypes = {
   onRemoveTag: PropTypes.func.isRequired,
   onColorChange: PropTypes.func.isRequired,
   onColorSelect: PropTypes.func.isRequired,
+  onPutColor: PropTypes.func.isRequired,
 };
 
 IconEditor.defaultProps = {

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SizeSensor} from 'libreact/lib/SizeSensor';
+import {MouseSensor} from 'libreact/lib/MouseSensor';
 import {sheet} from '../../../nano';
 
 const SIZE = 16;
@@ -20,47 +21,89 @@ const styles = sheet({
   }
 });
 
-const Grid = ({pixels, onClick}) => {
-  return (
-    <SizeSensor>{({width}) => {
-      const cellWidth = width / SIZE - 1;
-      const rows = [];
+class Grid extends Component {
+  static propTypes = {
+    pixels: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
+  };
 
-      for (let y = 0; y < SIZE; y++) {
-        const cells = [];
+  state = {
+    scrubbing: false,
+  };
 
-        for (let x = 0; x < SIZE; x++) {
-          cells.push(
-            <div
-              key={x}
-              className={styles.cell}
-              style={{
-                width: cellWidth,
-                height: cellWidth,
-                background: (pixels[y] || {})[x] || '#eee',
-              }}
-              onMouseDown={() => onClick(x, y)}
-            />
+  onMouseDown = () => {
+    this.setState({
+      scrubbing: true,
+    })
+  };
+
+  onMouseMove = ({elW, elH, elX, elY}) => {
+    if (!this.state.scrubbing) {
+      return;
+    }
+
+    const x = Math.floor(SIZE * elX / elW);
+    const y = Math.floor(SIZE * elY / elH);
+
+    if ((x >= 0) && (y >= 0) && (x < SIZE) && (y < SIZE)) {
+      this.props.onClick(x, y);
+    }
+  };
+
+  onStopTrackingMouse = () => {
+    this.setState({
+      scrubbing: false
+    });
+  };
+
+  render () {
+    const {pixels, onClick} = this.props;
+
+    return (
+      <SizeSensor>{({width}) => {
+        const cellWidth = width / SIZE - 1;
+        const rows = [];
+
+        for (let y = 0; y < SIZE; y++) {
+          const cells = [];
+
+          for (let x = 0; x < SIZE; x++) {
+            cells.push(
+              <div
+                key={x}
+                className={styles.cell}
+                style={{
+                  width: cellWidth,
+                  height: cellWidth,
+                  background: (pixels[y] || {})[x] || '#eee',
+                }}
+                onMouseDown={() => onClick(x, y)}
+              />
+            );
+          }
+
+          rows.push(
+            <div key={y} className={styles.row}>{cells}</div>
           );
         }
 
-        rows.push(
-          <div key={y} className={styles.row}>{cells}</div>
+        return (
+          <div>
+            <MouseSensor onMouseMove={this.onMouseMove}>
+              <div
+                className={styles.grid}
+                onMouseDown={this.onMouseDown}
+                onMouseUp={this.onStopTrackingMouse}
+                onMouseLeave={this.onStopTrackingMouse}
+              >
+                {rows}
+              </div>
+            </MouseSensor>
+          </div>
         );
-      }
-
-      return (
-        <div className={styles.grid}>
-          {rows}
-        </div>
-      );
-    }}</SizeSensor>
-  );
-};
-
-Grid.propTypes = {
-  pixels: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+      }}</SizeSensor>
+    );
+  }
+}
 
 export default Grid;

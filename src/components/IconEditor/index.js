@@ -4,6 +4,8 @@ import Header from './Header';
 import Palette from './Palette';
 import Grid from './Grid';
 import {sheet, jsx} from '../../nano';
+import exportImage from '../../api/exportImage';
+import SvgDownload from './SvgDownload';
 
 const Separator = jsx('div', {
   bg: '#e6e6e6',
@@ -50,6 +52,12 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
           pixels={icon.pixels}
           onClick={(x, y) => onPutColor(x, y, color)}
         />
+        <Separator />
+        <div onClick={() => {
+          exportImage(icon);
+        }}>
+          <SvgDownload />
+        </div>
       </div>
     </div>
   );

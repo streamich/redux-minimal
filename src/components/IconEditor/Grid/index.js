@@ -56,6 +56,10 @@ class Grid extends Component {
     });
   };
 
+  preventDefault = (event) => {
+    event.preventDefault();
+  };
+
   render () {
     const {pixels, onClick} = this.props;
 
@@ -88,7 +92,7 @@ class Grid extends Component {
         }
 
         return (
-          <div>
+          <div onDrag={this.preventDefault} onDragStart={this.preventDefault}>
             <MouseSensor onMouseMove={this.onMouseMove}>
               <div
                 className={styles.grid}

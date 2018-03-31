@@ -3,6 +3,7 @@
 - Refreshes favicon in browser tab
 - Export to `.png`
 - 10 color preset with color picker
+- Persists filter string in local storage
 
 
 ## Redux Schema

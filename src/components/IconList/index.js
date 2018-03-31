@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Value} from 'libreact/lib/Value';
+import {LocalStorage} from 'libreact/lib/LocalStorage';
 import IconListItem from './IconListItem';
 import SearchBox from './SearchBox';
 
@@ -32,6 +33,7 @@ const IconList = ({activeUuid, icons, onSelect}) => {
             <IconListItem {...icon} active={activeUuid === icon.uuid} onClick={() => onSelect(icon.uuid)} key={index} />
           )
         }
+        <LocalStorage persist name="filter" data={value} onMount={set} />
       </div>
     }</Value>
   );

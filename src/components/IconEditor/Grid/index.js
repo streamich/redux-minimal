@@ -1,7 +1,55 @@
 import React from 'react';
+import {SizeSensor} from 'libreact/lib/SizeSensor';
+import {sheet} from '../../../nano';
+
+const SIZE = 16;
+
+const styles = sheet({
+  grid: {
+
+  },
+  row: {
+    d: 'flex',
+    justifyContent: 'space-between',
+  },
+  cell: {
+    bg: '#eee',
+    out: '1px solid #e3e3e3',
+    marr: '1px',
+  }
+});
 
 const Grid = () => {
-  return <div>grid...</div>;
+  return (
+    <SizeSensor>{({width}) => {
+      const cellWidth = width / SIZE - 1;
+      const rows = [];
+
+      for (let y = 0; y < SIZE; y++) {
+        const cells = [];
+    
+        for (let x = 0; x < SIZE; x++) {
+          cells.push(
+            <div className={styles.cell} style={{
+              width: cellWidth,
+              height: cellWidth,
+            }} />
+          );
+        }
+    
+        rows.push(
+          <div className={styles.row}>{cells}</div>
+        );
+      }
+
+      return (
+        <div className={styles.grid}>
+          {width}
+          {rows}
+        </div>
+      );
+    }}</SizeSensor>
+  );
 };
 
 export default Grid;

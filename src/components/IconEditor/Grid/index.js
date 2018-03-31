@@ -6,7 +6,8 @@ const SIZE = 16;
 
 const styles = sheet({
   grid: {
-
+    pos: 'relative',
+    z: 1,
   },
   row: {
     d: 'flex',
@@ -44,7 +45,6 @@ const Grid = () => {
 
       return (
         <div className={styles.grid}>
-          {width}
           {rows}
         </div>
       );

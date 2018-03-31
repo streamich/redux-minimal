@@ -47,7 +47,8 @@
     "redux-form": "^6.4.3",
     "redux-saga": "^0.14.3",
     "uuid": "^3.2.1",
-    "libreact": "^0.18.0"
+    "libreact": "^1.2.1",
+    "react-color": "2.14.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

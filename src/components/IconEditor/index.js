@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
-import Colors from './Colors';
+import Palette from './Palette';
 import Grid from './Grid';
 import {sheet} from '../../nano';
 
@@ -33,7 +33,7 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag}) => {
         onRemoveTag={onRemoveTag}
       />
       <div className={styles.card}>
-        <Colors />
+        <Palette />
         <Grid />
       </div>
     </div>

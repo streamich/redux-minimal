@@ -31,7 +31,7 @@ const Grid = () => {
     
         for (let x = 0; x < SIZE; x++) {
           cells.push(
-            <div className={styles.cell} style={{
+            <div key={x} className={styles.cell} style={{
               width: cellWidth,
               height: cellWidth,
             }} />
@@ -39,7 +39,7 @@ const Grid = () => {
         }
     
         rows.push(
-          <div className={styles.row}>{cells}</div>
+          <div key={y} className={styles.row}>{cells}</div>
         );
       }
 

@@ -19,7 +19,7 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag}) => {
+const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange}) => {
   if (!icon) {
     return null;
   }
@@ -33,7 +33,7 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag}) => {
         onRemoveTag={onRemoveTag}
       />
       <div className={styles.card}>
-        <Palette />
+        <Palette colors={icon.colors} onChange={onColorChange} />
         <Grid />
       </div>
     </div>

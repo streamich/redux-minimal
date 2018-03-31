@@ -1,4 +1,10 @@
-import {ICONS_CREATE, ICONS_RENAME, ICONS_TAG_ADD, ICONS_TAG_REMOVE} from "../actions/icons";
+import {
+  ICONS_CREATE, 
+  ICONS_RENAME, 
+  ICONS_TAG_ADD, 
+  ICONS_TAG_REMOVE, 
+  ICONS_SET_COLOR
+} from "../actions/icons";
 
 let cnt = 1;
 
@@ -57,6 +63,24 @@ export default (state, action) => {
         [action.uuid]: {
           ...icon,
           tags
+        }
+      };
+    case ICONS_SET_COLOR:
+      icon = state[action.uuid];
+
+      if (!icon) {
+        return state;
+      }
+
+      const colors = [...icon.colors];
+
+      colors[action.index] = action.color;
+
+      return {
+        ...state,
+        [action.uuid]: {
+          ...icon,
+          colors
         }
       };
     default:

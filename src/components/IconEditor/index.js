@@ -19,7 +19,7 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange}) => {
+const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect}) => {
   if (!icon) {
     return null;
   }
@@ -28,12 +28,17 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
     <div className={'fadeInScale' + styles.editor} key={uuid}>
       <Header
         icon={icon}
-        onNameChange={onNameChange} 
+        onNameChange={onNameChange}
         onAddTag={onAddTag}
         onRemoveTag={onRemoveTag}
       />
       <div className={styles.card}>
-        <Palette colors={icon.colors} onChange={onColorChange} />
+        <Palette
+          activeIndex={icon.colorIndex}
+          colors={icon.colors}
+          onChange={onColorChange}
+          onSelect={onColorSelect}
+        />
         <Grid />
       </div>
     </div>
@@ -42,7 +47,15 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
 
 IconEditor.propTypes = {
   uuid: PropTypes.string.isRequired,
-  icon: PropTypes.object,
+  icon: PropTypes.shape({
+    colorIndex: PropTypes.number.isRequired,
+    colors: PropTypes.array.isRequired,
+  }),
+  onNameChange: PropTypes.func.isRequired,
+  onAddTag: PropTypes.func.isRequired,
+  onRemoveTag: PropTypes.func.isRequired,
+  onColorChange: PropTypes.func.isRequired,
+  onColorSelect: PropTypes.func.isRequired,
 };
 
 IconEditor.defaultProps = {

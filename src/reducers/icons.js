@@ -3,10 +3,27 @@ import {
   ICONS_RENAME, 
   ICONS_TAG_ADD, 
   ICONS_TAG_REMOVE, 
-  ICONS_SET_COLOR
+  ICONS_SET_COLOR,
+  ICONS_SELECT_COLOR,
 } from "../actions/icons";
 
 let cnt = 1;
+
+const patchIcon = (state, uuid, getPatch) => {
+  const icon = state[uuid];
+
+  if (!icon) {
+    return state;
+  }
+
+  return {
+    ...state,
+    [uuid]: {
+      ...icon,
+      ...getPatch(icon),
+    }
+  };
+};
 
 export default (state, action) => {
   let icon;
@@ -18,6 +35,7 @@ export default (state, action) => {
         name: action.name || ('Unnamed ' + (cnt++)),
         tags: {},
         pixels: {},
+        colorIndex: -1,
         colors: [],
       }};
     case ICONS_RENAME:
@@ -83,6 +101,11 @@ export default (state, action) => {
           colors
         }
       };
+    case ICONS_SELECT_COLOR:
+      return patchIcon(state, action.uuid, icon => ({
+        colorIndex: action.index
+      }));
+
     default:
       return state || {};
   }

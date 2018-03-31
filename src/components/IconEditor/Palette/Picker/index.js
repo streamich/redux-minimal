@@ -25,8 +25,11 @@ const styles = sheet({
     trs: 'background .2s',
     '&:hover': {
       col: '#555',
-      bg: '#ddd',
+      opacity: '0.6',
     },
+  },
+  toggleActive: {
+    out: '3px solid #07f',
   },
   select: {
     pos: 'absolute',
@@ -35,18 +38,28 @@ const styles = sheet({
   },
 });
 
-const Picker = ({color, onChange}) => {
+const Picker = ({active, color, onChange, onSelect}) => {
   return (
     <Toggle>{({on, toggle, set}) =>
       <OutsideClick onClick={() => set(false)}>
         <div
-          className={styles.picker} 
+          className={styles.picker}
           style={{
-            zIndex: on ? 2 : 1,
+            zIndex: on ? 3 : (active ? 2 : 1),
             background: color || '#f5f5f5',
           }}
         >
-          <div className={styles.toggle} onClick={toggle}>
+          <div
+            className={styles.toggle + (active ? styles.toggleActive : '')}
+            onClick={() => {
+              onSelect();
+              if (!color) toggle();
+            }}
+            onDoubleClick={() => {
+              onSelect();
+              toggle();
+            }}
+          >
             {!color && 'Pick'}
           </div>
           {on &&
@@ -65,8 +78,14 @@ const Picker = ({color, onChange}) => {
 };
 
 Picker.propTypes = {
+  active: PropTypes.bool,
   color: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
+
+Picker.defaultProps = {
+  active: false,
 };
 
 export default Picker;

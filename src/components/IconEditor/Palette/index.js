@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {ChromePicker} from 'react-color';
 import {sheet} from '../../../nano';
 import Picker from './Picker';
@@ -14,28 +15,37 @@ const styles = sheet({
     flexWrap: 'wrap',
   },
   picker: {
-    
+
   }
 });
 
-const Palette = ({colors, onChange}) => {
+const Palette = ({activeIndex, colors, onChange, onSelect}) => {
   const list = [];
 
-  for (let i = 0; i < MAX_COLORS; i++) {
+  for (let index = 0; index < MAX_COLORS; index++) {
     list.push(
-      <Picker key={i} color={colors[i] || ''} onChange={(color) => onChange(i, color)} />
+      <Picker
+        key={index}
+        active={activeIndex === index}
+        color={colors[index] || ''}
+        onChange={(color) => onChange(index, color)}
+        onSelect={() => onSelect(index)}
+      />
     );
   }
 
   return (
     <div className={styles.palette}>
-      {list}  
+      {list}
     </div>
   );
 };
 
 Palette.propTypes = {
-
+  activeIndex: PropTypes.number.isRequired,
+  colors: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default Palette;

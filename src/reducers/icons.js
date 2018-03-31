@@ -1,5 +1,6 @@
 import {
   ICONS_CREATE,
+  ICONS_DELETE,
   ICONS_RENAME,
   ICONS_TAG_ADD,
   ICONS_TAG_REMOVE,
@@ -39,6 +40,9 @@ export default (state, action) => {
         colorIndex: -1,
         colors: [],
       }};
+    case ICONS_DELETE:
+      const {[action.uuid]: omitIcon, ...rest} = state;
+      return rest;
     case ICONS_RENAME:
       icon = state[action.uuid];
 

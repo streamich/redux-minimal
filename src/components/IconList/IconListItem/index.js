@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Ripple} from 'libreact/lib/Ripple';
 import {jsx} from '../../../nano';
 
 const IconPanel = jsx('div', {
@@ -16,16 +17,20 @@ const IconPanel = jsx('div', {
 });
 
 const IconListItem = ({active, uuid, name, tags, onClick}) =>
-  <IconPanel
-    className="fadeIn"
-    css={{
-      bdr: active ? '3px solid #07f' : 0,
-      fw: active ? 'bold' : 'normal',
-    }}
-    onClick={onClick}
-  >
-      {name || '...'}
-  </IconPanel>;
+  <Ripple color="rgba(255, 255, 255, .25)" ms={400}>
+    <div>
+      <IconPanel
+        className="fadeIn"
+        css={{
+          bdr: active ? '3px solid #07f' : 0,
+          fw: active ? 'bold' : 'normal',
+        }}
+        onClick={onClick}
+      >
+          {name || '...'}
+      </IconPanel>
+    </div>
+  </Ripple>;
 
 IconListItem.propTypes = {
   active: PropTypes.bool.isRequired,

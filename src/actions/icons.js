@@ -1,6 +1,7 @@
 import uuidv1 from 'uuid/v1';
 
 export const ICONS_CREATE = 'ICONS_CREATE';
+export const ICONS_DELETE = 'ICONS_DELETE';
 export const ICONS_RENAME = 'ICONS_RENAME';
 export const ICONS_TAG_ADD = 'ICONS_TAG_ADD';
 export const ICONS_TAG_REMOVE = 'ICONS_TAG_REMOVE';
@@ -11,6 +12,11 @@ export const ICONS_PUT_COLOR = 'ICONS_PUT_COLOR';
 export const createIcon = () => ({
   uuid: uuidv1(),
   type: ICONS_CREATE
+});
+
+export const deleteIcon = (uuid) => ({
+  uuid,
+  type: ICONS_DELETE
 });
 
 export const renameIcon = (uuid, name) => ({

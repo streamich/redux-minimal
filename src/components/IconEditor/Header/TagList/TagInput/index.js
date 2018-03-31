@@ -8,7 +8,7 @@ const styles = sheet({
     d: 'inline-block',
     maxW: '200px',
     mart: '8px',
-    h: '36px',
+    h: '38px',
   },
   input: {
     h: '36px',
@@ -33,9 +33,9 @@ const TagInput = ({onSubmit}) => {
         set('');
       }}>
         <input
-          className={styles.input} 
-          placeholder={'Add tag\u2026'} 
-          value={value} 
+          className={styles.input}
+          placeholder={'Add tag\u2026'}
+          value={value}
           onChange={(event) => set(event.target.value)}
           onBlur={() => {
             onSubmit(value);

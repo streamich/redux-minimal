@@ -1,5 +1,5 @@
 import {APP_SELECT_ICON} from "../actions/app";
-import {ICONS_CREATE} from "../actions/icons";
+import {ICONS_CREATE, ICONS_DELETE} from "../actions/icons";
 
 const initialState = {
   currentIconUuid: '',

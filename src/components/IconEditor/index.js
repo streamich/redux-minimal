@@ -26,7 +26,7 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor}) => {
+const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete}) => {
   if (!icon) {
     return null;
   }
@@ -52,7 +52,7 @@ const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onC
           onClick={(x, y) => onPutColor(x, y, color)}
         />
         <Separator />
-        <Footer icon={icon} />
+        <Footer icon={icon} onDelete={onDelete} />
       </div>
     </div>
   );
@@ -72,6 +72,7 @@ IconEditor.propTypes = {
   onColorChange: PropTypes.func.isRequired,
   onColorSelect: PropTypes.func.isRequired,
   onPutColor: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 IconEditor.defaultProps = {

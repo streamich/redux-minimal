@@ -9,7 +9,14 @@ const mapStateToProps = (state, props) => {
     icon = state.icons[props.uuid];
   }
 
+  let color = 'black';
+
+  if (icon) {
+    color = icon.colors[icon.colorIndex] || 'black'
+  }
+
   return {
+    color,
     icon
   }
 };

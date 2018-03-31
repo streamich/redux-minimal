@@ -19,7 +19,7 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor}) => {
+const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor}) => {
   if (!icon) {
     return null;
   }
@@ -40,7 +40,8 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
           onSelect={onColorSelect}
         />
         <Grid
-          onClick={(x, y) => onPutColor(x, y, 'red')}
+          pixels={icon.pixels}
+          onClick={(x, y) => onPutColor(x, y, color)}
         />
       </div>
     </div>
@@ -49,6 +50,7 @@ const IconEditor = ({uuid, icon, onNameChange, onAddTag, onRemoveTag, onColorCha
 
 IconEditor.propTypes = {
   uuid: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
   icon: PropTypes.shape({
     colorIndex: PropTypes.number.isRequired,
     colors: PropTypes.array.isRequired,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {SizeSensor} from 'libreact/lib/SizeSensor';
 import {sheet} from '../../../nano';
 
@@ -14,13 +15,12 @@ const styles = sheet({
     justifyContent: 'space-between',
   },
   cell: {
-    bg: '#eee',
-    out: '1px solid #e3e3e3',
+    out: '1px solid #888',
     marr: '1px',
   }
 });
 
-const Grid = ({onClick}) => {
+const Grid = ({pixels, onClick}) => {
   return (
     <SizeSensor>{({width}) => {
       const cellWidth = width / SIZE - 1;
@@ -37,8 +37,9 @@ const Grid = ({onClick}) => {
               style={{
                 width: cellWidth,
                 height: cellWidth,
+                background: (pixels[y] || {})[x] || '#eee',
               }}
-              onClick={() => onClick(x, y)}
+              onMouseDown={() => onClick(x, y)}
             />
           );
         }
@@ -55,6 +56,11 @@ const Grid = ({onClick}) => {
       );
     }}</SizeSensor>
   );
+};
+
+Grid.propTypes = {
+  pixels: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Grid;

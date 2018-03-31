@@ -52,22 +52,35 @@ const styles = sheet({
   },
 });
 
-const SearchBox = ({onChange, t = T}) => {
+const SearchBox = ({value, onChange, onCancel, t = T}) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.search}>
         <SvgSearch />
       </div>
-      <input className={styles.input} placeholder={t('Filter')} />
-      <div className={styles.close}>
-        <SvgClose />
-      </div>
+      <input
+        className={styles.input}
+        value={value}
+        placeholder={t('Filter')}
+        onChange={(event) => onChange(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === 'Escape') onCancel();
+        }}
+      />
+      {value &&
+        <div className={styles.close} onClick={onCancel}>
+          <SvgClose />
+        </div>
+      }
     </div>
   );
 };
 
 SearchBox.propTypes = {
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  t: PropTypes.func,
 };
 
 export default SearchBox;

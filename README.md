@@ -10,8 +10,8 @@
 
 ```js
 {
-    icons: [
-        {
+    icons: {
+        '23lkrjfw9-23orjfsdf3234': {
             uuid: '23lkrjfw9-23orjfsdf3234',
             name: 'Mario',
             tags: {
@@ -23,13 +23,15 @@
                     '1': 'red'
                 }
             },
+            colorIndex: -1,
             colors: [],
-            history: []
         }
-    ],
-    search: {
-        games: ['23lkrjfw9-23orjfsdf3234'],
-        retro: ['23lkrjfw9-23orjfsdf3234'],
+    },
+    history: {
+        '23lkrjfw9-23orjfsdf3234': {
+            index: -1,
+            list: [],
+        }
     }
 }
 ```

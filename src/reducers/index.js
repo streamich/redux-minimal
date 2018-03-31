@@ -3,6 +3,7 @@ import { routerReducer } from "react-router-redux";
 import { reducer as formReducer } from "redux-form";
 import app from './app';
 import icons from './icons';
+import history from './history';
 
 // main reducers
 export const reducers = combineReducers({
@@ -10,4 +11,5 @@ export const reducers = combineReducers({
   form: formReducer,
   app,
   icons,
+  history,
 });

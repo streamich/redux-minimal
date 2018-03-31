@@ -4,6 +4,7 @@ import Header from './Header';
 import Palette from './Palette';
 import Grid from './Grid';
 import Footer from './Footer';
+import Welcome from './Welcome';
 import {sheet, jsx} from '../../nano';
 
 const Separator = jsx('div', {
@@ -26,9 +27,9 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete}) => {
+const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete, onCreateIcon}) => {
   if (!icon) {
-    return null;
+    return <Welcome onCreate={onCreateIcon} />;
   }
 
   return (
@@ -73,6 +74,7 @@ IconEditor.propTypes = {
   onColorSelect: PropTypes.func.isRequired,
   onPutColor: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onCreateIcon: PropTypes.func.isRequired,
 };
 
 IconEditor.defaultProps = {

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import IconEditor from '.';
-import {renameIcon, addTag, removeTag, setColor, selectColor, putColor, deleteIcon} from '../../actions/icons';
+import {renameIcon, addTag, removeTag, setColor, selectColor, putColor, deleteIcon, createIcon} from '../../actions/icons';
 
 const mapStateToProps = (state, props) => {
   let icon = null;
@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch, {uuid}) => ({
   onColorSelect: (index) => dispatch(selectColor(uuid, index)),
   onPutColor: (x, y, color) => dispatch(putColor(uuid, x, y, color)),
   onDelete: () => dispatch(deleteIcon(uuid)),
+  onCreateIcon: () => dispatch(createIcon()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IconEditor);

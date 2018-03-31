@@ -33,7 +33,11 @@ module.exports = {
       {
         test: /\.css$/,
         loaders: ['style', 'css'],
-      }
+      },
+      {
+        test: /\.svg$/,
+        loaders: ['babel', 'svg-react-loader']
+      },
     ],
   },
   devServer: {

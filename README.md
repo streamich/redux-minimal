@@ -4,6 +4,7 @@
 - Export to `.png`
 - 10 color preset with color picker
 - Persists filter string in local storage
+- Use `ArrowLeft` and `ArrowRight` keys to navigate history
 
 
 ## Redux Schema

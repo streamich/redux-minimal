@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import Palette from './Palette';
@@ -27,58 +27,82 @@ const styles = sheet({
   }
 }, 'IconEditor');
 
-const IconEditor = ({uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete, onCreateIcon}) => {
-  if (!icon) {
-    return <Welcome onCreate={onCreateIcon} />;
+class IconEditor extends Component {
+  static propTypes = {
+    uuid: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    icon: PropTypes.shape({
+      colorIndex: PropTypes.number.isRequired,
+      colors: PropTypes.array.isRequired,
+      pixels: PropTypes.object.isRequired,
+    }),
+    onNameChange: PropTypes.func.isRequired,
+    onAddTag: PropTypes.func.isRequired,
+    onRemoveTag: PropTypes.func.isRequired,
+    onColorChange: PropTypes.func.isRequired,
+    onColorSelect: PropTypes.func.isRequired,
+    onPutColor: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onCreateIcon: PropTypes.func.isRequired,
+    onHistoryNext: PropTypes.func.isRequired,
+    onHistoryPrev: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    icon: null,
+  };
+
+  componentDidMount () {
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
-  return (
-    <div className={'fadeInScale' + styles.editor} key={uuid}>
-      <div className={styles.card}>
-        <Header
-          icon={icon}
-          onNameChange={onNameChange}
-          onAddTag={onAddTag}
-          onRemoveTag={onRemoveTag}
-        />
-        <Separator />
-        <Palette
-          activeIndex={icon.colorIndex}
-          colors={icon.colors}
-          onChange={onColorChange}
-          onSelect={onColorSelect}
-        />
-        <Grid
-          pixels={icon.pixels}
-          onClick={(x, y) => onPutColor(x, y, color)}
-        />
-        <Separator />
-        <Footer icon={icon} onDelete={onDelete} />
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown = (event) => {
+    const {key} = event;
+
+    if (key == 'ArrowRight') {
+      this.props.onHistoryNext();
+    } else if (key === 'ArrowLeft') {
+      this.props.onHistoryPrev();
+    }
+  };
+
+  render () {
+    const {uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete, onCreateIcon} = this.props;
+
+    if (!icon) {
+      return <Welcome onCreate={onCreateIcon} />;
+    }
+
+    return (
+      <div className={'fadeInScale' + styles.editor} key={uuid}>
+        <div className={styles.card}>
+          <Header
+            icon={icon}
+            onNameChange={onNameChange}
+            onAddTag={onAddTag}
+            onRemoveTag={onRemoveTag}
+          />
+          <Separator />
+          <Palette
+            activeIndex={icon.colorIndex}
+            colors={icon.colors}
+            onChange={onColorChange}
+            onSelect={onColorSelect}
+          />
+          <Grid
+            pixels={icon.pixels}
+            onClick={(x, y) => onPutColor(x, y, color)}
+          />
+          <Separator />
+          <Footer icon={icon} onDelete={onDelete} />
+        </div>
       </div>
-    </div>
-  );
-};
-
-IconEditor.propTypes = {
-  uuid: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  icon: PropTypes.shape({
-    colorIndex: PropTypes.number.isRequired,
-    colors: PropTypes.array.isRequired,
-    pixels: PropTypes.object.isRequired,
-  }),
-  onNameChange: PropTypes.func.isRequired,
-  onAddTag: PropTypes.func.isRequired,
-  onRemoveTag: PropTypes.func.isRequired,
-  onColorChange: PropTypes.func.isRequired,
-  onColorSelect: PropTypes.func.isRequired,
-  onPutColor: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onCreateIcon: PropTypes.func.isRequired,
-};
-
-IconEditor.defaultProps = {
-  icon: null,
-};
+    );
+  }
+}
 
 export default IconEditor;

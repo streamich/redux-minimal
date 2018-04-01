@@ -8,6 +8,7 @@ export const ICONS_TAG_REMOVE = 'ICONS_TAG_REMOVE';
 export const ICONS_SET_COLOR = 'ICONS_SET_COLOR';
 export const ICONS_SELECT_COLOR = 'ICONS_SELECT_COLOR';
 export const ICONS_PUT_COLOR = 'ICONS_PUT_COLOR';
+export const ICONS_PUT = 'ICONS_PUT';
 
 export const createIcon = () => ({
   uuid: uuidv1(),
@@ -56,4 +57,9 @@ export const putColor = (uuid, x, y, color) => ({
   y,
   color,
   type: ICONS_PUT_COLOR,
+});
+
+export const iconPut = (icon) => ({
+  icon,
+  type: ICONS_PUT,
 });

@@ -1,6 +1,6 @@
 import {delay} from 'redux-saga';
 import {fork, take, select, call, cancel, takeEvery, put} from 'redux-saga/effects';
-import {historyPush} from '../actions/history';
+import {historyPush, HISTORY_PREV, HISTORY_NEXT} from '../actions/history';
 import {
   ICONS_CREATE,
   ICONS_RENAME,
@@ -8,9 +8,10 @@ import {
   ICONS_TAG_REMOVE,
   ICONS_SET_COLOR,
   ICONS_SELECT_COLOR,
-  ICONS_PUT_COLOR
+  ICONS_PUT_COLOR,
+  iconPut
 } from '../actions/icons';
-import { getIcon } from '../selectors';
+import {getIcon, getIconHistoryState} from '../selectors';
 
 const pushIntoHistory = function* ({uuid}) {
   yield call(delay, 500);
@@ -42,6 +43,20 @@ const watchHistoriEvents = function* () {
   }
 };
 
+const watchHistoryPrev = function* () {
+  while (true) {
+    const action = yield take([
+      HISTORY_PREV,
+      HISTORY_NEXT,
+    ]);
+
+    const icon = yield select(getIconHistoryState, action.uuid);
+
+    yield put(iconPut(icon));
+  }
+};
+
 export default function * () {
   yield fork(watchHistoriEvents);
+  yield fork(watchHistoryPrev);
 };

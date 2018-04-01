@@ -7,6 +7,7 @@ import {
   ICONS_SET_COLOR,
   ICONS_SELECT_COLOR,
   ICONS_PUT_COLOR,
+  ICONS_PUT,
 } from "../actions/icons";
 
 let cnt = 1;
@@ -96,6 +97,8 @@ export default (state, action) => {
           }
         }
       }));
+    case ICONS_PUT:
+      return {...state, [action.icon.uuid]: action.icon};
     default:
       return state || {};
   }

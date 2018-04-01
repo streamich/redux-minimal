@@ -5,6 +5,19 @@
 - 10 color preset with color picker
 - Persists filter string in local storage
 - Use `ArrowLeft` and `ArrowRight` keys to navigate history
+- Persists state in `localStorage` to be used on refresh
+
+
+## Usage
+
+```
+git clone https://github.com/streamich/redux-minimal
+git checkout feat/ico-app
+yarn
+npm start
+```
+
+Navigate to `http://localhost:8080/`.
 
 
 ## Redux Schema

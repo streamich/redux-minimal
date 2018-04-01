@@ -12,6 +12,7 @@
 
 ```
 git clone https://github.com/streamich/redux-minimal
+cd redux-minimal
 git checkout feat/ico-app
 yarn
 npm start

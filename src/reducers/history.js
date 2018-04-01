@@ -2,7 +2,8 @@ import {
   HISTORY_PUSH,
   HISTORY_PREV,
   HISTORY_NEXT,
-} from "../actions/history";
+} from '../actions/history';
+import {ICONS_DELETE} from '../actions/icons';
 
 const LIMIT = 50;
 
@@ -27,6 +28,9 @@ export default (state, action) => {
           list: [...list, icon],
         }
       };
+    case ICONS_DELETE:
+      const {[action.uuid]: omitIcon, ...rest} = state;
+      return rest;
     case HISTORY_PREV: {
       const history = state[action.uuid];
 

@@ -1,5 +1,6 @@
 import reducer from '../history';
 import {historyPush, historyPrev, historyNext} from '../../actions/history';
+import {deleteIcon} from '../../actions/icons';
 
 describe('reducers', () => {
   describe('history', () => {
@@ -80,6 +81,29 @@ describe('reducers', () => {
           expect(state['1'].index).toBe(Math.min(i, 49));
           expect(state['1'].list.length).toBe(Math.min(i + 1, 50));
         }
+      });
+    });
+
+    describe('deleteIcon()', () => {
+      it('deletes history of deleted icon', () => {
+        const uuid = '123';
+        const icon = {
+          uuid,
+        };
+        let state = {};
+
+        state = reducer(state, historyPush(icon));
+
+        expect(state).toEqual({
+          [uuid]: {
+            index: 0,
+            list: [icon]
+          }
+        });
+
+        state = reducer(state, deleteIcon(uuid));
+
+        expect(state[uuid]).toBe(undefined);
       });
     });
 

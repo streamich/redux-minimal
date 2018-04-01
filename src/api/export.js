@@ -12,11 +12,16 @@ const downloadUrl = (name, url) => {
   document.body.removeChild(a);
 };
 
-const exportImage = (icon) => {
+export const exportImage = (icon) => {
   const {name, pixels} = icon;
   const url = pixelsToUrl(pixels);
 
   downloadUrl(name + '.png', url);
 };
 
-export default exportImage;
+export const exportJson = (icon) => {
+  const json = JSON.stringify(icon, null, 4);
+  const url ='data:application/json;utf8,' + encodeURIComponent(json)
+
+  downloadUrl(icon.name + '.json', url);
+};

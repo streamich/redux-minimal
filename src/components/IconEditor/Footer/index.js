@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {sheet} from '../../../nano';
 import SvgDownload from './SvgDownload';
-import exportImage from '../../../api/exportImage';
+import SvgExport from './SvgExport';
+import {exportImage, exportJson} from '../../../api/export';
 
 const styles = sheet({
   footer: {
     d: 'flex',
     mar: '-24px 0',
   },
-  download: {
+  icon: {
     pad: '24px 0',
-    w: '50%',
+    w: '33.3%',
     ta: 'center',
     op: .6,
     cur: 'pointer',
@@ -24,7 +25,7 @@ const styles = sheet({
   },
   delete: {
     pad: '24px 0',
-    w: '50%',
+    w: '33.3%',
     ta: 'center',
     ff: 'Ubuntu,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
     fz: '14px',
@@ -40,8 +41,11 @@ const styles = sheet({
 const Footer = ({icon, onDelete}) => {
   return (
     <div className={styles.footer}>
-        <div className={styles.download} onClick={() => exportImage(icon)}>
+        <div className={styles.icon} onClick={() => exportJson(icon)}>
           <SvgDownload />
+        </div>
+        <div className={styles.icon} onClick={() => exportImage(icon)}>
+          <SvgExport />
         </div>
         <div className={styles.delete} onClick={onDelete}>
           Delete

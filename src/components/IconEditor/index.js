@@ -5,6 +5,7 @@ import Palette from './Palette';
 import Grid from './Grid';
 import Footer from './Footer';
 import Welcome from './Welcome';
+import Progress from './Progress';
 import {sheet, jsx} from '../../nano';
 
 const Separator = jsx('div', {
@@ -20,6 +21,7 @@ const styles = sheet({
     mar: 'auto',
   },
   card: {
+    pos: 'relative',
     bdrad: '1px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, .1), 0 0 2px rgba(0, 0, 0, .1)',
     pad: '24px',
@@ -36,6 +38,7 @@ class IconEditor extends Component {
       colors: PropTypes.array.isRequired,
       pixels: PropTypes.object.isRequired,
     }),
+    historyProgress: PropTypes.number.isRequired,
     onNameChange: PropTypes.func.isRequired,
     onAddTag: PropTypes.func.isRequired,
     onRemoveTag: PropTypes.func.isRequired,
@@ -71,7 +74,8 @@ class IconEditor extends Component {
   };
 
   render () {
-    const {uuid, color, icon, onNameChange, onAddTag, onRemoveTag, onColorChange, onColorSelect, onPutColor, onDelete, onCreateIcon} = this.props;
+    const {uuid, color, icon, historyProgress, onNameChange, onAddTag, onRemoveTag,
+      onColorChange, onColorSelect, onPutColor, onDelete, onCreateIcon} = this.props;
 
     if (!icon) {
       return <Welcome onCreate={onCreateIcon} />;
@@ -80,6 +84,7 @@ class IconEditor extends Component {
     return (
       <div className={'fadeInScale' + styles.editor} key={uuid}>
         <div className={styles.card}>
+          <Progress value={historyProgress} />
           <Header
             icon={icon}
             onNameChange={onNameChange}

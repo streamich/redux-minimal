@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import IconEditor from '.';
 import {renameIcon, addTag, removeTag, setColor, selectColor, putColor, deleteIcon, createIcon} from '../../actions/icons';
 import {historyNext, historyPrev} from '../../actions/history';
+import {getIconHistory} from '../../selectors';
 
 const mapStateToProps = (state, props) => {
   let icon = null;
@@ -16,9 +17,17 @@ const mapStateToProps = (state, props) => {
     color = icon.colors[icon.colorIndex] || 'black'
   }
 
+  let historyProgress = 1;
+  const history = getIconHistory(state, props.uuid);
+
+  if (history) {
+    historyProgress = history.index / ((history.list.length - 1) || 1);
+  }
+
   return {
     color,
-    icon
+    icon,
+    historyProgress,
   }
 };
 

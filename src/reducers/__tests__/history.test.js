@@ -67,6 +67,20 @@ describe('reducers', () => {
           },
         });
       });
+
+      it('has limit of 50 records', () => {
+        let state = {};
+
+        for (let i = 0; i < 100; i++) {
+          state = reducer(state, historyPush({
+            uuid: '1',
+            name: 'foo' + i,
+          }));
+
+          expect(state['1'].index).toBe(Math.min(i, 49));
+          expect(state['1'].list.length).toBe(Math.min(i + 1, 50));
+        }
+      });
     });
 
     describe('historyPrev()', () => {

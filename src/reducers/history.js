@@ -4,6 +4,7 @@ import {
   HISTORY_NEXT,
 } from "../actions/history";
 
+const LIMIT = 50;
 
 export default (state, action) => {
   switch (action.type) {
@@ -15,10 +16,14 @@ export default (state, action) => {
 
       list = list.slice(0, index + 1);
 
+      if (list.length >= LIMIT) {
+        list = list.slice(list.length - LIMIT + 1);
+      }
+
       return {
         ...state,
         [uuid]: {
-          index: index + 1,
+          index: list.length,
           list: [...list, icon],
         }
       };

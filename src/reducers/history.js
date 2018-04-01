@@ -1,5 +1,7 @@
 import {
-  HISTORY_PUSH
+  HISTORY_PUSH,
+  HISTORY_PREV,
+  HISTORY_NEXT,
 } from "../actions/history";
 
 
@@ -9,7 +11,9 @@ export default (state, action) => {
       const {icon} = action;
       const {uuid} = icon;
       const history = state[uuid] || {};
-      const {index = -1, list = []} = history;
+      let {index = -1, list = []} = history;
+
+      list = list.slice(0, index + 1);
 
       return {
         ...state,
@@ -18,6 +22,44 @@ export default (state, action) => {
           list: [...list, icon],
         }
       };
+    case HISTORY_PREV: {
+      const history = state[action.uuid];
+
+      if (!history) {
+        return state;
+      }
+
+      if (!history.index || (history.index < 0)) {
+        return state;
+      }
+
+      return {
+        ...state,
+        [action.uuid]: {
+          ...history,
+          index: history.index - 1,
+        }
+      };
+    }
+    case HISTORY_NEXT: {
+      const history = state[action.uuid];
+
+      if (!history) {
+        return state;
+      }
+
+      if (history.index >= history.list.length - 1) {
+        return state;
+      }
+
+      return {
+        ...state,
+        [action.uuid]: {
+          ...history,
+          index: history.index + 1,
+        }
+      };
+    }
     default:
       return state || {};
   }

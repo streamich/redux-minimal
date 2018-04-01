@@ -10,6 +10,15 @@ const className = rule({
 
 class OpenFile extends Component {
   input = null;
+  mounted = false;
+
+  componentDidMount () {
+    this.mounted = true;
+  }
+
+  componentWillUnmount () {
+    this.mounted = false;
+  }
 
   ref = (el) => {
     this.input = el;
@@ -23,11 +32,39 @@ class OpenFile extends Component {
     }, 150);
   }
 
-  onFile = (event) => {
+  onInputChange = (event) => {
     const files = event.target.files;
 
     for (const file of files)
-      this.props.onFile(file);
+      this.onFile(file);
+  };
+
+  onFile (file) {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      if (!this.mounted) {
+        return;
+      }
+
+      try {
+        const json = JSON.parse(event.target.result);
+
+        if (typeof json !== 'object') {
+          throw TypeError('Expected an object.');
+        }
+
+        if (typeof json.name !== 'string') {
+          throw TypeError('Expected icon to have a name.');
+        }
+
+        this.props.onIcon(json);
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    reader.readAsText(file);
   };
 
   render () {
@@ -38,7 +75,7 @@ class OpenFile extends Component {
         <Button block onClick={this.onLoadClick}>{t('Load file')}</Button>
         <input
           style={{position: 'absolute', left: -9999, top: -9999, opacity: 0}}
-          onChange={this.onFile}
+          onChange={this.onInputChange}
           type="file"
           ref={this.ref}
         />
@@ -48,7 +85,7 @@ class OpenFile extends Component {
 }
 
 OpenFile.propTypes = {
-  onFile: PropTypes.func.isRequired,
+  onIcon: PropTypes.func.isRequired,
   t: PropTypes.func,
 };
 

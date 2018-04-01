@@ -21,7 +21,7 @@ const pushIntoHistory = function* ({uuid}) {
   yield put(historyPush(icon));
 };
 
-const watchHistoriEvents = function* () {
+const watchHistoricEvents = function* () {
   let task;
 
   while (true) {
@@ -43,7 +43,7 @@ const watchHistoriEvents = function* () {
   }
 };
 
-const watchHistoryPrev = function* () {
+const watchHistoryNavigation = function* () {
   while (true) {
     const action = yield take([
       HISTORY_PREV,
@@ -52,11 +52,13 @@ const watchHistoryPrev = function* () {
 
     const icon = yield select(getIconHistoryState, action.uuid);
 
-    yield put(iconPut(icon));
+    if (icon) {
+      yield put(iconPut(icon));
+    }
   }
 };
 
 export default function * () {
-  yield fork(watchHistoriEvents);
-  yield fork(watchHistoryPrev);
+  yield fork(watchHistoricEvents);
+  yield fork(watchHistoryNavigation);
 };

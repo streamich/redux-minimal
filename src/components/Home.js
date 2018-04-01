@@ -8,7 +8,7 @@ import {createIcon} from "../actions/icons";
 import IconList from './IconList/connected';
 import IconEditor from './IconEditor/connected';
 import {selectIcon} from "../actions/app";
-import OpenFile from "./OpenFile";
+import OpenFile from "./OpenFile/connected";
 
 const className = rule({
   pad: '20px'
@@ -35,10 +35,6 @@ class Home extends React.Component {
 
   onIconSelect = (uuid) => {
     this.props.dispatch(selectIcon(uuid));
-  };
-
-  onFile = (file) => {
-    console.log('file', file);
   };
 
   render() {

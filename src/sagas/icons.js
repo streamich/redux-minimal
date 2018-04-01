@@ -1,7 +1,7 @@
 import {delay} from 'redux-saga';
 import {fork, take, select, call, cancel, takeEvery, put} from 'redux-saga/effects';
 import {ICONS_PUT_COLOR, ICONS_DELETE} from '../actions/icons';
-import {APP_SELECT_ICON, selectIcon} from '../actions/app';
+import {APP_SELECT_ICON, APP_IMPORT_ICON, selectIcon} from '../actions/app';
 import {getIcon, getIcons} from '../selectors';
 import changeFavicon from '../api/changeFavicon';
 import pixelsToUrl from '../api/pixelsToUrl';

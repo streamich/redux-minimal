@@ -1,3 +1,4 @@
+import {APP_LOAD_INITIAL_STATE} from '../actions/app';
 import {
   ICONS_CREATE,
   ICONS_DELETE,
@@ -8,7 +9,7 @@ import {
   ICONS_SELECT_COLOR,
   ICONS_PUT_COLOR,
   ICONS_PUT,
-} from "../actions/icons";
+} from '../actions/icons';
 
 let cnt = 1;
 
@@ -32,6 +33,8 @@ export default (state, action) => {
   let icon;
 
   switch (action.type) {
+    case APP_LOAD_INITIAL_STATE:
+      return action.state.icons;
     case ICONS_CREATE:
       return {...state, [action.uuid]: {
         uuid: action.uuid,

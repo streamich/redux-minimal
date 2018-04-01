@@ -1,6 +1,6 @@
 import {delay} from 'redux-saga';
 import {fork, take, select, call, cancel, takeEvery, put} from 'redux-saga/effects';
-import {APP_IMPORT_ICON, selectIcon} from '../actions/app';
+import {APP_IMPORT_ICON, selectIcon, loadState} from '../actions/app';
 import {iconPut} from '../actions/icons';
 
 const importIcon = function* ({icon}) {
@@ -38,7 +38,20 @@ const persistToLocalStorage = function* () {
   }
 };
 
+const loadFromLocalStorage = function* () {
+  try {
+    const json = yield call([localStorage, localStorage.getItem], 'STATE');
+
+    if (json) {
+      const state = JSON.parse(json);
+
+      yield put(loadState(state));
+    }
+  } catch (error) {}
+};
+
 export default function * () {
-  yield fork(watchImportIcon);
+  yield fork(loadFromLocalStorage);
   yield fork(persistToLocalStorage);
+  yield fork(watchImportIcon);
 };

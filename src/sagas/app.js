@@ -12,6 +12,33 @@ const watchImportIcon = function* () {
   yield takeEvery(APP_IMPORT_ICON, importIcon);
 };
 
+const persistState = function* () {
+  yield call(delay, 250);
+
+  const state = yield select(state => state);
+
+  try {
+    const json = JSON.stringify(state);
+
+    yield call([localStorage, localStorage.setItem], 'STATE', json);
+  } catch (error) {}
+};
+
+const persistToLocalStorage = function* () {
+  let task;
+
+  while (true) {
+    const action = yield take('*');
+
+    if (task) {
+      yield cancel(task);
+    }
+
+    task = yield fork(persistState);
+  }
+};
+
 export default function * () {
   yield fork(watchImportIcon);
+  yield fork(persistToLocalStorage);
 };

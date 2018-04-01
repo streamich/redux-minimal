@@ -8,6 +8,7 @@ import {createIcon} from "../actions/icons";
 import IconList from './IconList/connected';
 import IconEditor from './IconEditor/connected';
 import {selectIcon} from "../actions/app";
+import OpenFile from "./OpenFile";
 
 const className = rule({
   pad: '20px'
@@ -36,6 +37,10 @@ class Home extends React.Component {
     this.props.dispatch(selectIcon(uuid));
   };
 
+  onFile = (file) => {
+    console.log('file', file);
+  };
+
   render() {
     return (
       <div className={className}>
@@ -44,6 +49,7 @@ class Home extends React.Component {
             <Button primary block onClick={this.onNewIconClick}>Create icon</Button>
           </SidebarPadding>
           <IconList onSelect={this.onIconSelect} />
+          <OpenFile onFile={this.onFile} />
         </Sidebar>
         <Layout>
           <IconEditor uuid={this.props.currentIconUuid} />

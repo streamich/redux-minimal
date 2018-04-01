@@ -45,6 +45,8 @@ const Button = ({block, primary, ...rest}) => {
   if (primary) {
     css.bg = '#07f';
     css.col = '#fff';
+  } else {
+    css.bg = '#eee';
   }
 
   if (block) {

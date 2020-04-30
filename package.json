@@ -19,7 +19,9 @@
     "start": "webpack-dev-server --inline --hot --history-api-fallback --host localhost --port 8080",
     "build-dev": "webpack --config webpack.dev.config.js",
     "build-prod": "webpack -p --config webpack.prod.config.js",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "babel": {
     "presets": [
@@ -49,7 +51,8 @@
     "uuid": "^3.2.1",
     "libreact": "^1.3.0",
     "react-color": "2.14.0",
-    "svg-react-loader": "^0.4.5"
+    "svg-react-loader": "^0.4.5",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
@@ -80,5 +83,6 @@
     "commitizen": {
       "path": "./node_modules/mol-conventional-changelog"
     }
-  }
+  },
+  "snyk": true
 }
